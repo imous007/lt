@@ -2,15 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>S-LT - Lan•Thau - Generator Prediksi</title>
   <style>
-   *{
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
     }
-
     body {
       padding: 1em;
       background-color: #000;
@@ -18,17 +15,14 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       overflow: auto;
     }
-
     .stars {
       position: fixed;
       width: 100%;
       height: 100%;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
       background: transparent;
       z-index: -1;
     }
-
     .star {
       position: absolute;
       background: white;
@@ -37,12 +31,10 @@
       border-radius: 50%;
       animation: twinkle 2s infinite ease-in-out;
     }
-
     @keyframes twinkle {
       0%, 100% { opacity: 0.3; transform: scale(1); }
       50% { opacity: 1; transform: scale(1.2); }
     }
-
     .container {
       width: 100%;
       max-width: 600px;
@@ -53,7 +45,6 @@
       box-shadow: 0 0 25px #ff0000;
       border: 1px solid #ff0000;
     }
-
     h1 {
       text-align: center;
       margin-bottom: 1em;
@@ -63,14 +54,12 @@
       -webkit-text-fill-color: transparent;
       text-shadow: 0 0 10px #ff0000;
     }
-
     .logo {
       display: block;
       margin: 0 auto 15px auto;
       max-width: 250px;
       filter: drop-shadow(0 0 5px #ff0000);
     }
-
     input, .button-acak {
       display: block;
       margin: auto;
@@ -88,7 +77,6 @@
       font-family: Consolas, monospace;
       font-weight: 600;
     }
-
     input:hover, .button-acak:hover {
       transform: scale(1.05);
       background-color: rgba(255, 85, 0, 0.3);
@@ -96,7 +84,6 @@
       border-color: #ff0000;
       cursor: pointer;
     }
-
     .button-acak {
       background-color: #ff0000;
       color: #fff;
@@ -104,78 +91,47 @@
       cursor: pointer;
       border: none;
     }
-
     .button-acak:hover {
       background-color: #ff0000;
       border-color: #ff0000;
     }
-
-    /* Bagian container hasil dengan background gelap dan tulisan putih */
     .container-hasil {
-      padding: .5em;
-      width: 100%;
-      max-width: 350px;
-      margin: auto;
+      margin-top: 2em;
+      padding: 1em;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
       border-radius: 12px;
-      background-color: #220000; /* gelap merah gelap */
-      box-shadow: inset 0 0 15px #ff0000; /* glow oranye lembut */
+      background-color: #220000;
+      box-shadow: inset 0 0 15px #ff0000;
       color: #fff;
       font-weight: 600;
       border: 1px solid #ff0000;
-      overflow-wrap: break-word;
+      font-family: Consolas, monospace;
+      line-height: 1.6em;
+      word-break: break-word;
     }
-
-    .container-hasil table {
-      width: 100%;
-      color: #fff; /* tulisan putih */
-      border-collapse: collapse;
-      background-color: #330000;
-      border-radius: 10px;
-      overflow: hidden;
-    }
-
-    .container-hasil table thead th {
-      border-bottom: 2px solid #ff0000;
-      text-align: center;
-      padding: .5em 0;
-      color: #ffffff; /* oranye lembut */
-      background-color: #440000; /* merah gelap */
-      text-shadow: 0 0 3px #ff0000;
-    }
-
-    .container-hasil table tbody tr th,
-    .container-hasil table tbody tr td {
-      padding: .5em .8em;
+    .hasil-row {
+      display: flex;
+      padding: 0.5em 0;
       border-bottom: 1px solid #aa4400;
-      color: #ffffff;
+      align-items: center;
+      flex-wrap: wrap;
     }
-
-    .container-hasil table tbody tr td {
-      max-width: 250px;      /* batasi max lebar cell */
+    .hasil-row:last-child {
+      border-bottom: none;
+    }
+    .label {
+      flex: 0 0 120px;
+      color: #a7a7a7;
+      font-weight: 700;
+    }
+    .value {
+      flex: 1;
       word-wrap: break-word;
-      word-break: break-word;
-      white-space: normal;   /* agar teks bisa wrap */
-    }
-
-    .container-hasil table tbody tr td span {
-      display: inline-block;
-      max-width: 100%;
-      overflow-wrap: break-word;
-      word-break: break-word;
-    }
-
-    .container-hasil table tbody tr:hover {
-      background-color: #551100;
+      white-space: normal;
       color: #fff;
     }
-
-    .container-hasil table tbody tr th:first-of-type {
-      width: 25%;
-      font-weight: 700;
-      text-align: left;
-      color: #a7a7a7;
-    }
-
     ::selection {
       background: #ff0000;
       color: #fff;
@@ -194,24 +150,18 @@
     <input type="number" class="input-jumlah-3d" min="2" max="10" placeholder="Jumlah pasangan 3D (2-10)" />
     <input type="number" class="input-jumlah-4d" min="2" max="10" placeholder="Jumlah pasangan 4D (2-10)" />
     <button class="button-acak">Acak Angka</button>
+  </div>
 
-    <!-- Hasil -->
-    <div class="container-hasil">
-      <table>
-        <thead>
-          <tr><th colspan="3">PREDIKSI GUNUNG KAWI</th></tr>
-        </thead>
-        <tbody>
-          <tr><th>BBFS</th><td>:</td><td><span class="hasil-bbfs"></span></td></tr>
-          <tr><th>CB</th><td>:</td><td><span class="hasil-cb"></span></td></tr>
-          <tr><th>2D</th><td>:</td><td><span class="hasil-2d"></span></td></tr>
-          <tr><th>3D</th><td>:</td><td><span class="hasil-3d"></span></td></tr>
-          <tr><th>4D</th><td>:</td><td><span class="hasil-4d"></span></td></tr>
-          <tr><th>A.Main</th><td>:</td><td><span class="hasil-angka-main"></span></td></tr>
-          <tr><th>Kembar</th><td>:</td><td><span class="hasil-kembar"></span></td></tr>
-        </tbody>
-      </table>
-    </div>
+  <!-- Hasil vertikal -->
+  <div class="container-hasil" id="hasil-container">
+    <div class="hasil-row"><div class="label">BBFS :</div><div class="value"><span class="hasil-bbfs"></span></div></div>
+    <div class="hasil-row"><div class="label">CB :</div><div class="value"><span class="hasil-cb"></span></div></div>
+    <div class="hasil-row"><div class="label">2D :</div><div class="value"><span class="hasil-2d"></span></div></div>
+    <div class="hasil-row"><div class="label">3D :</div><div class="value"><span class="hasil-3d"></span></div></div>
+    <div class="hasil-row"><div class="label">4D :</div><div class="value"><span class="hasil-4d"></span></div></div>
+    <div class="hasil-row"><div class="label">A.Main :</div><div class="value"><span class="hasil-angka-main"></span></div></div>
+    <div class="hasil-row"><div class="label">A.Kembar :</div><div class="value"><span class="hasil-kembar"></span></div></div>
+    <div class="hasil-row"><div class="label">Shio :</div><div class="value"><span class="hasil-shio"></span></div></div>
   </div>
 
   <script>
@@ -234,11 +184,49 @@
       return array;
     }
 
+    // Data shio dan nomornya (sesuai data kamu)
+    const shioData = {
+      'ULAR': ['01','13','25','37','49','61','73','85','97'],
+      'NAGA': ['02','14','26','38','50','62','74','86','98'],
+      'KELINCI': ['03','15','27','39','51','63','75','87','99'],
+      'HARIMAU': ['04','16','28','40','52','64','76','88','00'],
+      'KERBAU': ['05','17','29','41','53','65','77','89'],
+      'TIKUS': ['06','18','30','42','54','66','78','90'],
+      'BABI': ['07','19','31','43','55','67','79','91'],
+      'ANJING': ['08','20','32','44','56','68','80','92'],
+      'AYAM': ['09','21','33','45','57','69','81','93'],
+      'MONYET': ['10','22','34','46','58','70','82','94'],
+      'KAMBING': ['11','23','35','47','59','71','83','95'],
+      'KUDA': ['12','24','36','48','60','72','84','96'],
+    };
+
+    // Cari shio berdasarkan 2 digit terakhir angka 4D (string)
+    function getShioFromNumber(numStr) {
+      numStr = numStr.padStart(2, '0');
+      for (const [shio, numbers] of Object.entries(shioData)) {
+        if (numbers.includes(numStr)) {
+          return shio;
+        }
+      }
+      return '-';
+    }
+
     document.querySelector('.button-acak').addEventListener('click', function () {
-      const jumlahAngka = parseInt(document.querySelector('.input-jumlah-angka').value) || 6;
-      const jumlah2D = parseInt(document.querySelector('.input-jumlah-2d').value) || 4;
-      const jumlah3D = parseInt(document.querySelector('.input-jumlah-3d').value) || 4;
-      const jumlah4D = parseInt(document.querySelector('.input-jumlah-4d').value) || 4;
+      const jumlahAngka = parseInt(document.querySelector('.input-jumlah-angka').value);
+      const jumlah2D = parseInt(document.querySelector('.input-jumlah-2d').value);
+      const jumlah3D = parseInt(document.querySelector('.input-jumlah-3d').value);
+      const jumlah4D = parseInt(document.querySelector('.input-jumlah-4d').value);
+
+      // Validasi input
+      if (
+        isNaN(jumlahAngka) || jumlahAngka < 4 || jumlahAngka > 10 ||
+        isNaN(jumlah2D) || jumlah2D < 2 || jumlah2D > 10 ||
+        isNaN(jumlah3D) || jumlah3D < 2 || jumlah3D > 10 ||
+        isNaN(jumlah4D) || jumlah4D < 2 || jumlah4D > 10
+      ) {
+        alert('Mohon isi input dengan benar sesuai batasan yang diberikan.');
+        return;
+      }
 
       const angkaPool = Array.from({ length: 10 }, (_, i) => i);
       shuffleArray(angkaPool);
@@ -248,13 +236,14 @@
       function generateND(bbfs, n, count) {
         const result = new Set();
         while (result.size < count) {
-          const candidate = shuffleArray([...bbfs]).slice(0, n).join('');
+          let candidate = shuffleArray([...bbfs]).slice(0, n).join('');
+          candidate = candidate.padStart(n, '0');
           result.add(candidate);
+          if(result.size > 1000) break; // safety break agar gak infinite loop
         }
         return Array.from(result);
       }
 
-      // Generate angka
       const bbfsStr = bbfs.join('*');
       const cbStr = hasilCB.join(' / ');
 
@@ -262,10 +251,9 @@
       const list3D = generateND(bbfs, 3, jumlah3D);
       const list4D = generateND(bbfs, 4, jumlah4D);
 
-      // Cari angka kembar dari angka BBFS (contoh: '11', '22', dst), skip '00'
+      // Generate angka kembar dari bbfs, selain 0 (untuk 2 digit sama)
       const kembarCandidates = bbfs.filter(n => n !== 0).map(n => '' + n + n);
 
-      // Ambil 2 acak kembar dari kandidat kalau ada, kalau kurang dari 2 kasih sebanyak yg ada, kalau 0 kasih '-'
       let kembarHasil;
       if (kembarCandidates.length === 0) {
         kembarHasil = '-';
@@ -274,14 +262,28 @@
         kembarHasil = kembarCandidates.slice(0, 2).join(' / ');
       }
 
-      // Tampilkan hasil
+      // Pilih angka utama dari list4D
+      const angkaMainRaw = list4D[Math.floor(Math.random() * list4D.length)] || '-';
+      const angkaMain = angkaMainRaw.padStart(4, '0');
+
+      // Ambil 2 digit terakhir angkaMain
+      const lastTwoDigits = angkaMain.slice(-2);
+
+      // Cari shio
+      const shio = getShioFromNumber(lastTwoDigits);
+
+      // Debugging console (hapus kalau sudah yakin)
+      console.log('angkaMain:', angkaMain, 'lastTwoDigits:', lastTwoDigits, 'shio:', shio);
+
+      // Update hasil di DOM
       document.querySelector('.hasil-bbfs').textContent = bbfsStr;
       document.querySelector('.hasil-cb').textContent = cbStr;
       document.querySelector('.hasil-2d').textContent = list2D.join('*');
       document.querySelector('.hasil-3d').textContent = list3D.join('*');
       document.querySelector('.hasil-4d').textContent = list4D.join('*');
-      document.querySelector('.hasil-angka-main').textContent = list4D[Math.floor(Math.random()*list4D.length)];
+      document.querySelector('.hasil-angka-main').textContent = angkaMain;
       document.querySelector('.hasil-kembar').textContent = kembarHasil;
+      document.querySelector('.hasil-shio').textContent = shio;
     });
   </script>
 </body>
