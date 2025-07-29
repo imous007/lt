@@ -122,6 +122,7 @@
       color: #fff;
       font-weight: 600;
       border: 1px solid #ff0000;
+      overflow-wrap: break-word;
     }
 
     .container-hasil table {
@@ -142,11 +143,25 @@
       text-shadow: 0 0 3px #ff0000;
     }
 
-    .container-hasil table tr th,
-    .container-hasil table tr td {
+    .container-hasil table tbody tr th,
+    .container-hasil table tbody tr td {
       padding: .5em .8em;
       border-bottom: 1px solid #aa4400;
       color: #ffffff;
+    }
+
+    .container-hasil table tbody tr td {
+      max-width: 250px;      /* batasi max lebar cell */
+      word-wrap: break-word;
+      word-break: break-word;
+      white-space: normal;   /* agar teks bisa wrap */
+    }
+
+    .container-hasil table tbody tr td span {
+      display: inline-block;
+      max-width: 100%;
+      overflow-wrap: break-word;
+      word-break: break-word;
     }
 
     .container-hasil table tbody tr:hover {
